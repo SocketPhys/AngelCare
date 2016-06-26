@@ -85,6 +85,7 @@ router.get('/', function(req, res, next) {
         var specialty_secondary = res.data[0]['provider']['specialty_secondary']
         console.log(fax  + " " + phone +" " + gender + " " + degree + " " + birthDate + " " + JSON.stringify(residencies) + " " + JSON.stringify(licensures) +" " + JSON.stringify(locations) + " " + JSON.stringify(specialty_primary) + " " + specialty + " " + board_certifications + " " + JSON.stringify(licenses) + " " + JSON.stringify(education) + " " + specialty_secondary);
     });
+    res.render('index')
 });
 
 router.get('/signUp',function(req,res,next){
