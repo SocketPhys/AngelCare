@@ -24,32 +24,35 @@
         </div>
     
         <div class="service-pricing">
+			<img src="/images/services_prices_icon.png" alt="Health Service Pricing" class="service-icon">
             <form action="/cpt" method="POST">
                 <input type="submit" value="Service Pricing" id="costs-button">
             </form>
         </div>
-        
-        <form action='/cpt' method='POST'>
-            <input type="text" name="code"><br>
-            <input type="submit" value="Submit">
-        </form>
-        
-        <div id="service-name"><%= JSON.parse(JSON.stringify(desc)) %></div>
-        <div id="chart"></div>
-        <script src="http://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
-        <script>
-            var data = [<%=JSON.stringify(low)%>, <%=JSON.stringify(average)%>, <%=JSON.stringify(highPrice)%>];
-            var x = d3.scale.linear()
-                .domain([0, d3.max(data)])
-                .range([0, 420]);
-
-             d3.select("#chart")
-                .selectAll("div")
-                .data(data)
-                .enter().append("div")
-                .style("width", function(d) { return x(d) + "px"; })
-                .text(function(d) { return d; });
-        </script>
+		
+		<div id="bar-graph-rectangle"></div>
+		
+		<div id="service-pricing-graph">
+			<div id="service-name"><%= JSON.parse(JSON.stringify(desc)) %></div>
+			<canvas id="service-pricing-canvas" width="1000" height="500"></canvas>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+			<script>
+			var barData = {
+				labels : ["Low", "Average", "High"],
+				datasets : [{
+					fillColor : "rgba(151,187,205,0.2)",
+					strokeColor : "rgba(151,187,205,1)",
+					data : [<%=JSON.stringify(low)%>, <%=JSON.stringify(average)%>, <%=JSON.stringify(highPrice)%>]
+				}]
+			}
+			var ctx = document.getElementById("service-pricing-canvas").getContext("2d");
+			new Chart(ctx).Bar(barData);
+			</script>
+			<form action='/cpt' method='POST'>
+            	<input type="text" placeholder="Name of health service" id="service-text-field"><br>
+            	<%#<input type="submit" value="Submit">%>
+        	</form>
+		</div>
         
         <div class="settings">
             <img src="/images/user_icon.png" alt="Profile" class="profile"> 
