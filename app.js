@@ -26,6 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
+app.use("/stylesheets",express.static(__dirname + "/stylesheets")); 
+app.use("/images",express.static(__dirname + "/images")); 
 
 module.exports = app;
 

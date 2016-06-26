@@ -1,65 +1,24 @@
 <html>
-  <head>
-    <title>Angel Care</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-    <style>
-      #back{
-        min-height:95vh;
-        background-image: url('../images/why.jpg');
-        background-size: cover;
-      }
+    <head>
+        <title>Angel Care</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+        <link rel='stylesheet' href='/stylesheets/style.css'/>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Merienda+One' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <%# Header %>
+        <div id="top-rectangle"></div>
+        <div id="left-rectangle"></div>
+        <div id="vertical-line"></div>
+        <div id="horizontal-line"></div>
+        <img src="/images/user_icon.png" alt="Profile" class="profile"> 
+        <div id="name">Min Hoo Lee</div>
+        <div id="company-name"><b>Angel Care</b></div>
 
-      .main-content, #big{
-        min-height: 90vh;
-      }
-
-      .info{
-        min-height: 100vh;
-      }
-
-      .body{
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-    <script>
-      $('a').click(function() {
-          var href = $.attr(this, 'href');
-          $root.animate({
-              scrollTop: $(href).offset().top
-          }, 3000, function () {
-              window.location.hash = href;
-          });
-          return false;
-      });
-    </script>
-  </head>
-  <body>
-    <nav class="blue">
-      <div class="navbar-wrapper">
-        <a href="#" class="brand-logo" style="padding-left:10px">Angel Care</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="about">About</a></li>
-          <li><a href="contact" >Sign Up</a></li>
-          <li> <a href = "contact" > Log in </li>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="main grey lighten-3" id="back" style="padding:0;margin:0">
-            <div class="container" style="padding-top:25vh">
-                <div class="text">
-                    <h1 id="name" class="name center-align animated bounceInDown white-text" style="text-shadow: 2px 2px 4px #000000;">Angel Care</h1>
-                </div>
-                <div class="center-align">
-                    <a href="#about" id="move" class="waves-effect waves-light btn animated">Learn More</a>
-                </div>
-            </div>
-        </div>
-      </div>
-    </div>
-  </body>
+        <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+    </body>
 </html>
 
