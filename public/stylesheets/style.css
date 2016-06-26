@@ -59,10 +59,36 @@ body {
 #company-name {
     position: fixed;
     top: 10px;
-    left: 40px;
+    left: 39px;
     font-size: 150%;
     font-family: 'Merienda One', sans-serif;
     color: #5078B4;
+}
+
+#page-name {
+    position: fixed;
+    top: 13px;
+    left: 220px;
+    font-size: 150%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#dashboard-button {
+    position: fixed;
+    top: 100px;
+    left: 30px;
+    width: 170px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    font-size: 130%;
+    text-align: middle;
+    color: white;
+    font-family: 'Monsterrat', sans-serif;
+    -webkit-filter: brightness(90%);
+    transition: -webkitfilter .3s linear;
 }
 
 .profile {
@@ -73,16 +99,24 @@ body {
     height: 40px;
     border-radius: 200px;
     background-color: white;
+    transition: -webkitfilter .3s linear;
 }
 
-#chart div {
-   font: 10px sans-serif;
-   background-color: steelblue;
-   text-align: right;
-   padding: 3px;
-   margin: 1px;
-   color: white;
-   position: relative;
-   top: 500px;
-   left: 50%;
+.profile:hover {
+    -webkit-filter: brightness(120%);
+}
+
+.dashboard-icon {
+    position: fixed;
+    top: 100px;
+    left: 25px;
+    width: 30px;
+    height: 30px;
+    border-radius: 200px;
+    -webkit-filter: brightness(75%);
+    transition: -webkitfilter .3s linear;
+}
+
+#dashboard-button:hover {
+    -webkit-filter: brightness(130%);
 }
