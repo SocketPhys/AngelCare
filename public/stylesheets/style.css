@@ -73,11 +73,27 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+.profile {
+    position: fixed;
+    top: 5px;
+    right: 150px;
+    width: 40px;
+    height: 40px;
+    border-radius: 200px;
+    background-color: white;
+    transition: -webkitfilter .3s linear;
+}
+
+/* Dashboard Page */
+.dashboard:hover {
+    -webkit-filter: brightness(130%);
+}
+
 #dashboard-button {
     position: fixed;
     top: 100px;
-    left: 30px;
-    width: 170px;
+    left: 25px;
+    width: 175px;
     height: 30px;
     background-color: transparent;
     border: none;
@@ -91,21 +107,6 @@ body {
     transition: -webkitfilter .3s linear;
 }
 
-.profile {
-    position: fixed;
-    top: 5px;
-    right: 150px;
-    width: 40px;
-    height: 40px;
-    border-radius: 200px;
-    background-color: white;
-    transition: -webkitfilter .3s linear;
-}
-
-.profile:hover {
-    -webkit-filter: brightness(120%);
-}
-
 .dashboard-icon {
     position: fixed;
     top: 100px;
@@ -117,6 +118,74 @@ body {
     transition: -webkitfilter .3s linear;
 }
 
-#dashboard-button:hover {
+/* Health Service Pricing Page */
+.service-pricing:hover {
     -webkit-filter: brightness(130%);
 }
+
+#costs-button {
+    position: fixed;
+    top: 150px;
+    left: 30px;
+    width: 175px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    font-size: 130%;
+    text-align: middle;
+    color: white;
+    font-family: 'Monsterrat', sans-serif;
+    -webkit-filter: brightness(90%);
+    transition: -webkitfilter .3s linear;
+}
+
+<<<<<<< HEAD
+.profile:hover {
+=======
+#service-name {
+    position: fixed;
+    top: 200px;
+    left: 50%;
+}
+
+#chart div {
+   font: 10px sans-serif;
+   background-color: steelblue;
+   text-align: right;
+   padding: 3px;
+   margin: 1px;
+   color: white;
+   position: relative;
+   top: 500px;
+   left: 50%;
+}
+
+/* Settings Page */
+.settings:hover{
+>>>>>>> eb65efc... Format nicely and add buttons
+    -webkit-filter: brightness(120%);
+}
+
+#settings-button {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    top: 5px;
+    right: 150px;
+    background-color: transparent;
+    border: none;
+    border-radius: 200px;
+    cursor: pointer;
+    overflow: hidden;
+    font-size: 130%;
+    text-align: middle;
+    color: white;
+    font-family: 'Monsterrat', sans-serif;
+    -webkit-filter: brightness(90%);
+    transition: -webkitfilter .3s linear;
+}
+
+
+
