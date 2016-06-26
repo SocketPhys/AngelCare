@@ -1,9 +1,6 @@
+
 <html>
     <head>
-        <title>Angel Care</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
         <link rel='stylesheet' href='/stylesheets/style.css'/>
         <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Merienda+One' rel='stylesheet' type='text/css'>
@@ -17,12 +14,26 @@
         <img src="/images/user_icon.png" alt="Profile" class="profile"> 
         <div id="name">Min Hoo Lee</div>
         <div id="company-name"><b>Angel Care</b></div>
+        <h1> <%= JSON.stringify(desc)%></h1>
+        <div id="chart"></div>
+        <script src="http://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
+        <script>
+            var data = [<%=JSON.stringify(low)%>, <%=JSON.stringify(average)%>, <%=JSON.stringify(highPrice)%>];
+            var x = d3.scale.linear()
+                .domain([0, d3.max(data)])
+                .range([0, 420]);
 
-        <form action='/cpt' method = 'POST'>
+             d3.select("#chart")
+                .selectAll("div")
+                .data(data)
+                .enter().append("div")
+                .style("width", function(d) { return x(d) + "px"; })
+                .text(function(d) { return d; });
+        </script>
+        <form action='/cpt' method='POST'>
+            <input type="text" name="code"><br>
             <input type="submit" value="Submit">
         </form>
-
         <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
     </body>
 </html>
-
