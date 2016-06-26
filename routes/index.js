@@ -71,7 +71,7 @@ router.get('/', function(req, res, next) {
        limit: 1
     }, function(err, res){
         console.log(res.data[0]['provider']['npi'])
-        var fax = res.data[0]['provider']['fax'] 
+        var fax = res.data[0]['provider']['fax']
         var degree = res.data[0]['provider']['degree']
         var gender = res.data[0]['provider']['gender']
         var phone = res.data[0]['provider']['phone']
@@ -129,7 +129,7 @@ router.get('/settings',function(req,res,next){
   var birthdate = db.get('users')
   .get('birthDate')
   .value()
-  
+
   var tradingID = db.get('users')
   .get('tradingID')
   .value()
@@ -137,12 +137,16 @@ router.get('/settings',function(req,res,next){
   var planNum = db.get('users')
   .get('planNum')
   .value()
-   
+
 
 });
 
-router.get('/cpt',function(req,res,next){
-    var code = '95017';
+router.post('/cpt',function(req,resp,next){
+    var code= req.body.code;
+    if(code==null){
+        code='95017'
+    }
+    console.log(code)
     var zipcode = db.get('users')
    .get('zipCode')
    .value();
@@ -160,7 +164,8 @@ router.get('/cpt',function(req,res,next){
         var averagePrice = price['average_price']
         var lowPrice = price['low_price']
         var medianPrice = price['median_price']
-        //console.log(price.cpt_code + ':' + price.geo_zip_area +  ':' + price.average);
+        console.log(price);
+        resp.render('cpt',{highPrice:highPrice,median:medianPrice,average:averagePrice,low:lowPrice, desc:procedureDescription});
     });
 });
 
@@ -264,18 +269,19 @@ pokitdok.eligibility({
 });
 
 router.get('/drug',function(req,res,next){
-
+   options = {
+       "trading_partner_id": "medicare_national",
+       "plan_number": "S5884114",
+       "ndc": "00071101968"
+   }
     pokitdok.apiRequest({
-       path: '/pharmacy/formulary/',
+       path: '/pharmacy/formulary',
        method: 'GET',
-       qs: 'trading_partner_id=MOCKPAYER&plan_number=S5884114&drug=simvastatin',
+       qs: options
    }, function(err, res) {
-      if (err) {
-        return console.log(err, res.statusCode);
-      }
       // print the activity name status and id
           var activity = res
-          console.log(activity);
+          console.log(res);
    });
 
 
