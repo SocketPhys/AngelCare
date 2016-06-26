@@ -185,11 +185,19 @@ body {
 
 #single-graph-canvas {
     position: fixed;
-    height: 350px;
+    height: 500px;
     width: 700px;
     top: 620px;
     right: 70px;
     bottom: 50px;
+}
+
+#drug-search-name {
+    position: fixed;
+    top: 560px;
+    left: 400px;
+	font-size: 200%;
+    font-family: 'Monsterrat', sans-serif;
 }
 
 #drug-1 {
@@ -203,7 +211,7 @@ body {
 
 #drug-2 {
     position: fixed;
-    top: 800px;
+    top: 750px;
     left: 400px;
     font-size: 18pt;
 	font-family: 'Montserrat', sans-serif;
@@ -212,7 +220,7 @@ body {
 
 #drug-3 {
     position: fixed;
-    top: 900px;
+    top: 800px;
     left: 400px;
     font-size: 18pt;
 	font-family: 'Montserrat', sans-serif;
@@ -228,7 +236,7 @@ body {
 #drug-search {
     position: fixed;
     left: 400px;
-    top: 600px;
+    top: 625px;
     width: 500px;
     height: 30px;
     border-radius: 5px;

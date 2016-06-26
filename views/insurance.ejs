@@ -36,7 +36,6 @@
                 <input type="submit" value="Insurance" id="insurance-button">
             </form>
         </div>
-        
 		
         
 		<div id="bar-graph-rectangle"></div>
@@ -58,9 +57,8 @@
 			var ctx = document.getElementById("service-pricing-canvas").getContext("2d");
 			new Chart(ctx).Bar(barData);
 			</script>
-			<form action='/cpt' method='POST'>
-            	<input name = 'code' type="text" placeholder="Name of health service" id="service-text-field"><br>
-            	<input type="submit" value="Submit">
+			<form action='/insurance' method='POST'>
+            	<input name = 'code' type="text" placeholder="CPT Code" id="service-text-field"><br>
         	</form>
 		</div>
     

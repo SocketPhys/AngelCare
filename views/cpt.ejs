@@ -21,21 +21,8 @@
             <form action="/" method="GET">
                 <input type="submit" value="Dashboard" id="dashboard-button">
             </form>
-            
-            
         </div>
-        
-         <div class="provider">
-            <img src="/images/provider.png" alt="Provider" class="Provider-icon">
-            <form action="/" method="GET">
-                <input type="submit" value="Provider" id="Provider-button">
-            </form>
-            
-            
-        </div>
-        
-        
-        
+		
          <div class="insurance">
             <img src="/images/insurance_icon.png" alt="Insurance" class="insurance-icon">
             <form action="/insurance" method="POST">
@@ -43,7 +30,6 @@
             </form>
         </div>
         
-    
         <div class="service-pricing">
 			<img src="/images/services_prices_icon.png" alt="Health Service Pricing" class="service-icon">
             <form action="/cpt" method="POST">
@@ -54,7 +40,7 @@
 		<div id="bar-graph-rectangle"></div>
 		
 		<div id="service-pricing-graph">
-			<div id="service-name"><%= JSON.parse(JSON.stringify(desc)) %></div>
+			<div id="service-name">Health Service Pricing</div>
 			<canvas id="service-pricing-canvas" width="1000" height="500"></canvas>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 			<script>

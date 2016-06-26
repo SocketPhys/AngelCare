@@ -212,10 +212,8 @@
             document.getElementById("drug-" + c).style.display = "initial";
             c = c+1;
         }
-        </script>
-        
-        <table id="drug-table"></table>
-        
+		</script>
+		
         <form action='/drug' method = 'POST'>
             <input type = "text" name = "drug" placeholder= "Drug Name" id="drug-search" onfocusout="blurFunction()">
         </form>
@@ -230,10 +228,6 @@
                 <input type="submit" value="Dashboard" id="dashboard-button">
             </form>
         </div>
-		
-		<div id="main-rectangle"></div>
-		<div id="left-sub-rectangle"></div>
-		<div id="right-sub-rectangle">
 
         <div class="service-pricing">
             <img src="/images/services_prices_icon.png" alt="Health Service Pricing" class="service-icon">
@@ -314,6 +308,14 @@
         </script>
             
         <img src="/images/user_icon.png" alt="Profile" class="profile"> 
+		
+		<div id="drug-search-name">Drug Lookup</div>
+		
+		<img src="/images/user_icon.png" alt="Profile" class="profile"> 
+		
+		<div id="main-rectangle"></div>
+		<div id="left-sub-rectangle"></div>
+		<div id="right-sub-rectangle">
 
         <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
     </body>
