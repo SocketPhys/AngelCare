@@ -200,6 +200,7 @@ body {
 	font-family: 'Montserrat', sans-serif;
     display: none;
 }
+
 #drug-2 {
     position: fixed;
     top: 800px;
@@ -208,6 +209,7 @@ body {
 	font-family: 'Montserrat', sans-serif;
     display: none;
 }
+
 #drug-3 {
     position: fixed;
     top: 900px;

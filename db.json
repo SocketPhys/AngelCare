@@ -134,6 +134,35 @@
       }
     ],
     "zipCode": "95014",
+    "drugs": [
+      {
+        "drug": {
+          "name": "simvastatin",
+          "reIn": "0.88",
+          "reOut": "2.00",
+          "maIn": "6.48",
+          "maOut": "0.00"
+        }
+      },
+      {
+        "drug": {
+          "name": "lyrica",
+          "reIn": "337.02",
+          "reOut": "181.47",
+          "maIn": "1087.59",
+          "maOut": "466.11"
+        }
+      },
+      {
+        "drug": {
+          "name": "vimpat",
+          "reIn": "474.18",
+          "reOut": "255.33",
+          "maIn": "1528.63",
+          "maOut": "655.13"
+        }
+      }
+    ],
     "address": "21618 Rosario Ave",
     "city": "Cupertino",
     "state": "CA",

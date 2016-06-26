@@ -204,7 +204,10 @@ router.post('/cpt',function(req,resp,next){
 
 
 router.post('/insurance',function(req,resp,next){
-   var code = '95017';
+   var code= req.body.code;
+    if(code==null){
+        code='95017'
+    }
    var zipcode = db.get('users')
    .get('zipCode')
    .value();
@@ -400,7 +403,7 @@ router.get('/provider',function(req,resp,next){
    var npi = db.get('users')
   .get('npi')
   .value()
-
+    
   /*pokitdok.apiRequest({
     path: '/providers/',
     method: 'GET',

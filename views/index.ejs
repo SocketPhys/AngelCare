@@ -20,10 +20,6 @@
         <%# Sidebar Content %>
         <div id="left-rectangle"></div>
         <div id="vertical-line"></div>
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
         <img src="/images/dashboard_icon.png" alt="Dashboard" class="dashboard-icon">
         <form action="/cpt" method="POST">
             <input type="submit" value="Dashboard" id="dashboard-button">
@@ -31,7 +27,6 @@
         
         
     
->>>>>>> e7a1968... Fix bar graphs and add drug list
         <script type="text/javascript">
             var drugs = <%-JSON.stringify(drugs)%>;
             var dict={};
@@ -70,7 +65,6 @@
                 
                 console.log(name)
                 var stringer = name;
-<<<<<<< HEAD
                 console.log(stringer);
                 
                 var r= $('<input type="button" onclick="click(this)" value=' + stringer + '/>');
@@ -81,11 +75,9 @@
                 dict[name] = {'reOut': reOut,'maOut':maOut};
                 //$('#main-rectangle').append('</br>');
                 
-=======
                 console.log(stringer)
                 //var r= $('<input type="button" onclick="click(this)" value=' + stringer + '/>')
                 dict[name] = {'reOut': reOut,'maOut':maOut};
->>>>>>> e7a1968... Fix bar graphs and add drug list
                 
             }
             function click(elem){
@@ -93,9 +85,7 @@
                 var reOut =  dict[elem.value['reOut']]
                 var maOut = dict[elem.value['maOut']]
             }
-<<<<<<< HEAD
         </script>
-=======
             
             /*
             for (var i = 0; i < 12; i++) {
@@ -160,7 +150,6 @@
         var myChart = new Chart(ctx).Line(barData);
         </script>
         
-        
         <div id="single-graph-name">Monthly Copayment Prices from Single Drug (USD)</div>
         
         <canvas id="single-graph-canvas" width="1510" height="320"></canvas>
@@ -217,8 +206,6 @@
         var myChart = new Chart(ctx).Line(barData);
         </script>
         
-        
-        
         <script>
         var c = 1;
         function blurFunction() {
@@ -227,15 +214,14 @@
         }
         </script>
         
-        
         <table id="drug-table"></table>
         
         <form action='/drug' method = 'POST'>
             <input type = "text" name = "drug" placeholder= "Drug Name" id="drug-search" onfocusout="blurFunction()">
         </form>
         
-        <div id="drug-1">Simvastatin 40 MG</div>
-        <div id="drug-2">Lyrica 20 MG</div>
+        <div id="drug-1">Simvastatin 10 MG</div>
+        <div id="drug-2">Lyrica 40 MG</div>
         <div id="drug-3">Vimpat 80 MG</div>
         
         <div class="dashboard">
@@ -245,17 +231,9 @@
             </form>
         </div>
 		
-		<div id="main-rectangle">
-            <p>asdfds</p>
-        </div>
+		<div id="main-rectangle"></div>
 		<div id="left-sub-rectangle"></div>
 		<div id="right-sub-rectangle">
-        
-        </div>
-        <form action="/drug" method="POST">
-                <input name = 'drug' type="text" placeholder="drug" ><br>
-            	<input type="submit" value="Submit">
-            </form>
 
         <div class="service-pricing">
             <img src="/images/services_prices_icon.png" alt="Health Service Pricing" class="service-icon">
@@ -335,6 +313,8 @@
             }
         </script>
             
+        <img src="/images/user_icon.png" alt="Profile" class="profile"> 
+
         <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
     </body>
 </html>
