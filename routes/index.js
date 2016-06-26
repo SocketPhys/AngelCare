@@ -86,9 +86,45 @@ router.get('/', function(req, res, next) {
         var education = res.data[0]['provider']['education']
         var specialty_secondary = res.data[0]['provider']['specialty_secondary']
         console.log(fax  + " " + phone +" " + gender + " " + degree + " " + birthDate + " " + JSON.stringify(residencies) + " " + JSON.stringify(licensures) +" " + JSON.stringify(locations) + " " + JSON.stringify(specialty_primary) + " " + specialty + " " + board_certifications + " " + JSON.stringify(licenses) + " " + JSON.stringify(education) + " " + specialty_secondary);
+<<<<<<< HEAD
     });
 
     res.render('index');
+=======
+    });*/
+    
+    pokitdok.eligibility({
+     member: {
+        birth_date: birthdate,
+        first_name: firstName,
+        last_name: lastName,
+       
+        
+    },
+    provider: {
+        first_name: pfirstName,
+        
+        last_name: plastName,
+        npi:npi,
+        
+    },
+    service_types: ['health_benefit_plan_coverage'],
+    trading_partner_id: 'MOCKPAYER'
+}, function (err, res) {
+    // print the member eligibility for the specified provider
+    var start = res['data']['summary']['out_of_pocket']['individual'];
+    var inLimit = start['in_network']['limit']['amount']
+    var inRemaining = start['in_network']['remaining']['amount']
+    var outLimit = start['out_of_network']['limit']['amount']
+    var outRemaining = start['out_of_network']['remaining']['amount']
+    resp.render('index',{inLimit:inLimit,inRemaining:inRemaining,outLimit:outLimit,outRemaining:outRemaining});
+        
+        
+});
+    
+    
+    
+>>>>>>> 7ffe546... ASD
 });
 
 router.get('/settings',function(req,res,next){
