@@ -1,11 +1,18 @@
 {
-    "firstName": "Adithya",
-    "lastName": "Mohan",
-    "birthDate" : "1998-10-14",
-    "zipCode" : "95014",
-    "address" : "21618 Rosario Ave"
-    "city": "Cupertino",
-    "state" : "CA"
+        
+    "users":{
+        "firstName": "Adithya",
+        "lastName": "Mohan",
+        "pfirstName": "Mohammad",
+        "plastName":"Ismail",
+        "birthDate" : "1998-10-14",
+        "zipCode" : "95014",
+        "address" : "21618 Rosario Ave",
+        "city": "Cupertino",
+        "state" : "CA",
+        "gender" : "Male"
+
+    }
 
 
 
