@@ -63,7 +63,7 @@ router.get('/', function(req, res, next) {
   
   });*/
 
-    pokitdok.providers({
+    /*pokitdok.providers({
        first_name: pfirstName,
        last_name:  plastName,
        state: state,
@@ -86,11 +86,6 @@ router.get('/', function(req, res, next) {
         var education = res.data[0]['provider']['education']
         var specialty_secondary = res.data[0]['provider']['specialty_secondary']
         console.log(fax  + " " + phone +" " + gender + " " + degree + " " + birthDate + " " + JSON.stringify(residencies) + " " + JSON.stringify(licensures) +" " + JSON.stringify(locations) + " " + JSON.stringify(specialty_primary) + " " + specialty + " " + board_certifications + " " + JSON.stringify(licenses) + " " + JSON.stringify(education) + " " + specialty_secondary);
-<<<<<<< HEAD
-    });
-
-    res.render('index');
-=======
     });*/
     
     pokitdok.eligibility({
@@ -127,7 +122,6 @@ router.get('/', function(req, res, next) {
     
     
     
->>>>>>> 7ffe546... ASD
 });
 
 router.get('/settings',function(req,res,next){
@@ -357,7 +351,7 @@ router.post('/drug',function(req,res,next){
 });
 
 router.get('/provider',function(req,resp,next){
-    var firstName =  db.get('users')
+  var firstName =  db.get('users')
   .get('firstName')
   .value();
 
@@ -404,8 +398,20 @@ router.get('/provider',function(req,resp,next){
    var npi = db.get('users')
   .get('npi')
   .value()
+
+  /*pokitdok.apiRequest({
+    path: '/providers/',
+    method: 'GET',
+    qs: 'address_lines=' + address + '&first_name=' + firstName + '&last_name=' + lastName + '&gender=' + gender + '&state=' + state + '&zipcode=' + zipcode + '&radius=' + radius,
+  },function(err,res){
+        console.log(err);
+        console.log(res);
+  
     
-   pokitdok.providers({
+  
+  });*/
+
+    pokitdok.providers({
        first_name: pfirstName,
        last_name:  plastName,
        state: state,
@@ -427,7 +433,6 @@ router.get('/provider',function(req,resp,next){
         var licenses = res.data[0]['provider']['licenses']
         var education = res.data[0]['provider']['education']
         var specialty_secondary = res.data[0]['provider']['specialty_secondary']
-        
         resp.render('provider',{'fax':fax,'degree':degree,'gender':gender,'phone':phone,'birthDate':birthDate,'residencies':residencies,'licensures':licensures,'locations':locations,'specialty_primary':specialty_primary,'specialty':specialty,'board_certifications':board_certifications, 'licenses':licenses,'education':education,'specialty_secondary':specialty_secondary,'pfirstName':pfirstName, 'plastName':plastName})
     });
     

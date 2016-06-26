@@ -1,31 +1,10 @@
 {
-<<<<<<< HEAD
-        
-    "users":{
-        "firstName": "Adithya",
-        "lastName": "Mohan",
-        "pfirstName": "Mohammad",
-        "plastName":"Ismail",
-        "birthDate" : "1998-10-14",
-        "zipCode" : "95014",
-        "address" : "21618 Rosario Ave",
-        "city": "Cupertino",
-        "state" : "CA",
-        "gender" : "Male"
-
-    }
-
-
-
-
-
-}
-=======
   "users": {
     "firstName": "Adithya",
     "lastName": "Mohan",
     "pfirstName": "Mohammad",
     "plastName": "Ismail",
+    "birthDate": "1998-10-14",
     "drugs": [
       {
         "drug": {
@@ -37,7 +16,6 @@
         }
       }
     ],
-    "birthDate": "1998-10-14",
     "zipCode": "95014",
     "address": "21618 Rosario Ave",
     "city": "Cupertino",
@@ -46,4 +24,3 @@
     "npi": "1730105784"
   }
 }
->>>>>>> 77b9d4a... Finish all unfinished pages and clean up ui

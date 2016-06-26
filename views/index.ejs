@@ -9,6 +9,17 @@
     </head>
     <body>
         
+        <%# Header %>
+        <div id="top-rectangle"></div>
+        <div id="horizontal-line"></div>
+        <div id="name">Min Hoo Lee</div>
+        <div id="page-name">Dashboard</div>
+        <div id="company-name"><b>Angel Care</b></div>
+        
+        <%# Sidebar Content %>
+        <div id="left-rectangle"></div>
+        <div id="vertical-line"></div>
+
         <script type="text/javascript">
             var drugs = <%-JSON.stringify(drugs)%>;
             var dict={};
@@ -67,16 +78,6 @@
                 var maOut = dict[elem.value['maOut']]
             }
         </script>
-        <%# Header %>
-        <div id="top-rectangle"></div>
-        <div id="horizontal-line"></div>
-        <div id="name">Min Hoo Lee</div>
-        <div id="page-name">Dashboard</div>
-        <div id="company-name"><b>Angel Care</b></div>
-        
-        <%# Sidebar Content %>
-        <div id="left-rectangle"></div>
-        <div id="vertical-line"></div>
        
         <div class="dashboard">
             <img src="/images/dashboard_icon.png" alt="Dashboard" class="dashboard-icon">
@@ -118,7 +119,63 @@
                 <input type="submit" value="" id="settings-button">
             </form>
         </div>
-
+        
+        <script type="text/javascript">
+            var drugs = <%-JSON.stringify(drugs)%>;
+            var dict={};
+            var retail = {};
+            var master = {};
+            var mail = {};
+            for(var i = 0; i < drugs.length; i++) {
+                var name = drugs[i]['drug']['name'];
+                
+                var reOut = drugs[i]['drug']['reOut'];
+                
+                var a = parseInt(reOut);
+                // console.log("a" + a);
+                for(var k =0; k < 12; k++){
+                   retail[k] = (a - 2) + (Math.random() * (a + 3));
+              //     console.log("Example" + retail[k]);
+                }
+                
+                
+                var maOut = drugs[i]['drug']['maOut'];
+                
+                var b = parseInt(maOut);
+            //    console.log("b" + b);
+                for(var k = 0; k < 12; k++){
+                   var ex = (b - 2) + (Math.random() * (b + 3));
+                 //  console.log("examples" + ex);
+                    if(ex < 0){
+                        ex = 0;
+                    }
+                   mail[k] = ex;
+                 //  console.log("Example" + mail[k]);
+                }
+                
+                for(var k = 0; k < 12; k++){
+                    master[k] = retail[k] + mail[k];
+                    console.log("Master values" + master[k]);
+                }
+                
+                console.log(name)
+                var stringer = name;
+                console.log(stringer)
+                var r= $('<input type="button" onclick="click(this)" value=' + stringer + '/>');
+                $('body').append(r)
+                
+                dict[name] = {'reOut': reOut,'maOut':maOut};
+                $('body').append('</br>');
+                
+                
+            }
+            function click(elem){
+                console.log("click")
+                var reOut =  dict[elem.value['reOut']]
+                var maOut = dict[elem.value['maOut']]
+            }
+        </script>
+            
         <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
     </body>
 </html>
