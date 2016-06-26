@@ -38,14 +38,16 @@ router.get('/', function(req, res, next) {
   .get('gender')
   .value();
 
-  var radius = 20;
+  var radius = db.get('users')
+  .get('radius')
+  .value()
 
   var state = db.get('users')
   .get('state')
   .value();
 
   var zipcode = db.get('users')
-  .get('zipcode')
+  .get('zipCode')
   .value();
 
 
@@ -62,13 +64,13 @@ router.get('/', function(req, res, next) {
   });*/
 
     pokitdok.providers({
-       zipcode: zipcode,
        first_name: pfirstName,
        last_name:  plastName,
        state: state,
        radius:radius,
        limit: 1
     }, function(err, res){
+        console.log(res.data[0]['provider']['npi'])
         var fax = res.data[0]['provider']['fax'] 
         var degree = res.data[0]['provider']['degree']
         var gender = res.data[0]['provider']['gender']
@@ -85,15 +87,208 @@ router.get('/', function(req, res, next) {
         var specialty_secondary = res.data[0]['provider']['specialty_secondary']
         console.log(fax  + " " + phone +" " + gender + " " + degree + " " + birthDate + " " + JSON.stringify(residencies) + " " + JSON.stringify(licensures) +" " + JSON.stringify(locations) + " " + JSON.stringify(specialty_primary) + " " + specialty + " " + board_certifications + " " + JSON.stringify(licenses) + " " + JSON.stringify(education) + " " + specialty_secondary);
     });
-    res.render('index')
+
+    res.render('index');
 });
 
-router.get('/signUp',function(req,res,next){
-    res.render('signup');
+router.get('/settings',function(req,res,next){
+    var firstName =  db.get('users')
+  .get('firstName')
+  .value();
+
+
+  var address = db.get('users')
+  .get('address')
+  .value();
+
+  var city = db.get('users')
+  .get('city')
+  .value();
+
+  var lastName= db.get('users')
+  .get('lastName')
+  .value();
+
+
+  var gender = db.get('users')
+  .get('gender')
+  .value();
+
+  var radius = db.get('users')
+  .get('radius')
+  .value()
+
+  var state = db.get('users')
+  .get('state')
+  .value();
+
+  var zipcode = db.get('users')
+  .get('zipcode')
+  .value();
+
+  var birthdate = db.get('users')
+  .get('birthDate')
+  .value()
+  
+  var tradingID = db.get('users')
+  .get('tradingID')
+  .value()
+
+  var planNum = db.get('users')
+  .get('planNum')
+  .value()
+   
 
 });
 
-router.post('/sign',function(req,res,next){
+router.get('/cpt',function(req,res,next){
+    var code = '95017';
+    var zipcode = db.get('users')
+   .get('zipCode')
+   .value();
+
+   pokitdok.cashPrices({
+        zip_code: zipcode,
+        cpt_code: code
+    }, function (err, res) {
+    // print the cpt, geo_zip and average price
+        var price = res.data[0]
+        var highPrice = price['high_price']
+        var cptCode = price['cpt_code']
+        var procedureDescription = price['procedure_description']
+        var standardDeviation = price['standard_deviation']
+        var averagePrice = price['average_price']
+        var lowPrice = price['low_price']
+        var medianPrice = price['median_price']
+        //console.log(price.cpt_code + ':' + price.geo_zip_area +  ':' + price.average);
+    });
+});
+
+
+router.get('/insurance',function(req,res,next){
+   var code = '95017';
+   var zipcode = db.get('users')
+   .get('zipCode')
+   .value();
+
+   pokitdok.insurancePrices({
+        zip_code: zipcode,
+        cpt_code: code
+    }, function (err, res) {
+    // print the cpt and geo_zip
+    // print the average price per payment types
+        var price = res.data;
+        console.log(price)
+    }); 
+
+});
+
+router.get('/eligibity',function(req,res,next){
+ var firstName =  db.get('users')
+  .get('firstName')
+  .value();
+
+
+  var address = db.get('users')
+  .get('address')
+  .value();
+
+  var city = db.get('users')
+  .get('city')
+  .value();
+
+  var lastName= db.get('users')
+  .get('lastName')
+  .value();
+
+
+  var gender = db.get('users')
+  .get('gender')
+  .value();
+
+  var radius = db.get('users')
+  .get('radius')
+  .value()
+
+  var state = db.get('users')
+  .get('state')
+  .value();
+
+  var zipcode = db.get('users')
+  .get('zipcode')
+  .value();
+
+  var birthdate = db.get('users')
+  .get('birthDate')
+  .value()
+
+  var tradingID = db.get('users')
+  .get('tradingID')
+  .value()
+
+  var planNum = db.get('users')
+  .get('planNum')
+  .value()
+ 
+  var npi = db.get('users')
+  .get('npi')
+  .value()
+ 
+   var pfirstName =  db.get('users')
+  .get('pfirstName')
+  .value();
+
+  var plastName= db.get('users')
+  .get('plastName')
+  .value();   
+
+pokitdok.eligibility({
+     member: {
+        birth_date: birthdate,
+        first_name: firstName,
+        last_name: lastName
+        
+    },
+    provider: {
+        first_name: pfirstName,
+        last_name: plastName,
+        npi:npi
+    },
+    service_types: ['health_benefit_plan_coverage'],
+    trading_partner_id: 'MOCKPAYER'
+}, function (err, res) {
+    // print the member eligibility for the specified provider
+    console.log(res['data']['summary']['out_of_pocket']['individual']);
+});
+
+});
+
+router.get('/drug',function(req,res,next){
+
+    pokitdok.apiRequest({
+       path: '/pharmacy/formulary/',
+       method: 'GET',
+       qs: 'trading_partner_id=MOCKPAYER&plan_number=S5884114&drug=simvastatin',
+   }, function(err, res) {
+      if (err) {
+        return console.log(err, res.statusCode);
+      }
+      // print the activity name status and id
+          var activity = res
+          console.log(activity);
+   });
+
+
+
+    /*pokitdok.pharmacy_formulary({
+
+        trading_partner_id:'MOCKPAYER', 
+        plan_number:'S5884114', 
+        drug:'simvastatin'
+
+    },function(err,res){
+        console.log(res)
+    });*/
 
 });
 
