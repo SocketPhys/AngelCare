@@ -1,10 +1,72 @@
 <html>
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
         <link rel='stylesheet' href='/stylesheets/style.css'/>
         <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Merienda+One' rel='stylesheet' type='text/css'>
     </head>
     <body>
+        
+        <script type="text/javascript">
+            var drugs = <%-JSON.stringify(drugs)%>;
+            var dict={};
+            var retail = {};
+            var master = {};
+            var mail = {};
+            for(var i = 0; i < drugs.length; i++) {
+                var name = drugs[i]['drug']['name'];
+                
+                var reOut = drugs[i]['drug']['reOut'];
+                
+                var a = parseInt(reOut);
+                // console.log("a" + a);
+                for(var k =0; k < 12; k++){
+                   retail[k] = (a - 2) + (Math.random() * (a + 3));
+              //     console.log("Example" + retail[k]);
+                }
+                
+                
+                var maOut = drugs[i]['drug']['maOut'];
+                
+                var b = parseInt(maOut);
+            //    console.log("b" + b);
+                for(var k = 0; k < 12; k++){
+                   var ex = (b - 2) + (Math.random() * (b + 3));
+                 //  console.log("examples" + ex);
+                    if(ex < 0){
+                        ex = 0;
+                    }
+                   mail[k] = ex;
+                 //  console.log("Example" + mail[k]);
+                }
+                
+                for(var k = 0; k < 12; k++){
+                    master[k] = retail[k] + mail[k];
+                    console.log("Master values" + master[k]);
+                }
+                
+                console.log(name)
+                var stringer = name;
+                console.log(stringer);
+                
+                var r= $('<input type="button" onclick="click(this)" value=' + stringer + '/>');
+                var div = document.getElementById('main-rectangle');
+                
+               // $('#main-rectangle').append(r)
+                $(div).append(r);
+                dict[name] = {'reOut': reOut,'maOut':maOut};
+                //$('#main-rectangle').append('</br>');
+                
+                
+            }
+            function click(elem){
+                console.log("click")
+                var reOut =  dict[elem.value['reOut']]
+                var maOut = dict[elem.value['maOut']]
+            }
+        </script>
         <%# Header %>
         <div id="top-rectangle"></div>
         <div id="horizontal-line"></div>
@@ -23,9 +85,17 @@
             </form>
         </div>
 		
-		<div id="main-rectangle"></div>
+		<div id="main-rectangle">
+            <p>asdfds</p>
+        </div>
 		<div id="left-sub-rectangle"></div>
-		<div id="right-sub-rectangle"></div>
+		<div id="right-sub-rectangle">
+        
+        </div>
+        <form action="/drug" method="POST">
+                <input name = 'drug' type="text" placeholder="drug" ><br>
+            	<input type="submit" value="Submit">
+            </form>
 
         <div class="service-pricing">
             <img src="/images/services_prices_icon.png" alt="Health Service Pricing" class="service-icon">
@@ -33,6 +103,14 @@
                 <input type="submit" value="Service Pricing" id="costs-button">
             </form>
         </div>
+        
+        <div class="insurance">
+            <img src="/images/insurance_icon.png" alt="Insurance" class="insurance-icon">
+            <form action="/insurance" method="POST">
+                <input type="submit" value="Insurance" id="insurance-button">
+            </form>
+        </div>
+        
         
         <div class="settings">
             <img src="/images/user_icon.png" alt="Profile" class="profile"> 

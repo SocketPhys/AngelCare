@@ -117,7 +117,10 @@ router.get('/', function(req, res, next) {
     var inRemaining = start['in_network']['remaining']['amount']
     var outLimit = start['out_of_network']['limit']['amount']
     var outRemaining = start['out_of_network']['remaining']['amount']
-    resp.render('index',{inLimit:inLimit,inRemaining:inRemaining,outLimit:outLimit,outRemaining:outRemaining});
+    var drugs = db.get('users')
+                .get('drugs')
+                .value()
+    resp.render('index',{inLimit:inLimit,inRemaining:inRemaining,outLimit:outLimit,outRemaining:outRemaining,drugs:drugs});
         
         
 });
@@ -206,7 +209,7 @@ router.post('/cpt',function(req,resp,next){
 });
 
 
-router.get('/insurance',function(req,res,next){
+router.post('/insurance',function(req,resp,next){
    var code = '95017';
    var zipcode = db.get('users')
    .get('zipCode')
@@ -218,8 +221,17 @@ router.get('/insurance',function(req,res,next){
     }, function (err, res) {
     // print the cpt and geo_zip
     // print the average price per payment types
-        var price = res.data;
-        console.log(price)
+        var price = res['data']['amounts'][0]
+        console.log(price);
+        var highPrice = price['high_price']
+        var cptCode = price['cpt_code']
+        var procedureDescription = price['procedure_description']
+        var standardDeviation = price['standard_deviation']
+        var averagePrice = price['average_price']
+        var lowPrice = price['low_price']
+        var medianPrice = price['median_price']
+        console.log(price);
+        resp.render('insurance',{highPrice:highPrice,median:medianPrice,average:averagePrice,low:lowPrice});
     }); 
 
 });
@@ -304,11 +316,13 @@ pokitdok.eligibility({
 
 });
 
-router.get('/drug',function(req,res,next){
+router.post('/drug',function(req,res,next){
+    var drug = req.body.drug;
+    console.log(drug)
    options = {
        "trading_partner_id": "medicare_national",
        "plan_number": "S5884114",
-       "ndc": "00071101968"
+       "drug":drug
    }
     pokitdok.apiRequest({
        path: '/pharmacy/formulary',
@@ -316,8 +330,16 @@ router.get('/drug',function(req,res,next){
        qs: options
    }, function(err, res) {
       // print the activity name status and id
-          var activity = res
-          console.log(res);
+          var activity = res['data'][0]
+          var reIn = activity['retail']['ins_pay_30_day']['amount']
+          var reOut = activity['retail']['oop_30_day']['amount']
+          var maIn = activity['mail']['ins_pay_90_day']['amount']
+          var maOut = activity['mail']['oop_90_day']['amount']
+          db.get('users')
+            .get('drugs')
+            .push({drug:{'name':drug,'reIn':reIn,'reOut':reOut,'maIn':maIn,'maOut':maOut}})
+            .value()
+          request.get('http://localhost:3000/')
    });
 
 
@@ -332,6 +354,83 @@ router.get('/drug',function(req,res,next){
         console.log(res)
     });*/
 
+});
+
+router.get('/provider',function(req,resp,next){
+    var firstName =  db.get('users')
+  .get('firstName')
+  .value();
+
+  var pfirstName =  db.get('users')
+  .get('pfirstName')
+  .value();
+
+  var address = db.get('users')
+  .get('address')
+  .value();
+
+  var city = db.get('users')
+  .get('city')
+  .value();
+
+  var lastName= db.get('users')
+  .get('lastName')
+  .value();
+
+  var plastName= db.get('users')
+  .get('plastName')
+  .value();
+
+  var gender = db.get('users')
+  .get('gender')
+  .value();
+
+  var radius = db.get('users')
+  .get('radius')
+  .value()
+
+  var state = db.get('users')
+  .get('state')
+  .value();
+
+  var zipcode = db.get('users')
+  .get('zipCode')
+  .value();
+    
+   var birthdate = db.get('users')
+  .get('birthDate')
+  .value()
+   
+   var npi = db.get('users')
+  .get('npi')
+  .value()
+    
+   pokitdok.providers({
+       first_name: pfirstName,
+       last_name:  plastName,
+       state: state,
+       radius:radius,
+       limit: 1
+    }, function(err, res){
+        console.log(res.data[0]['provider']['npi'])
+        var fax = res.data[0]['provider']['fax']
+        var degree = res.data[0]['provider']['degree']
+        var gender = res.data[0]['provider']['gender']
+        var phone = res.data[0]['provider']['phone']
+        var birthDate = res.data[0]['provider']['birth_date']
+        var residencies = res.data[0]['provider']['residencies']
+        var licensures = res.data[0]['provider']['licensures']
+        var locations = res.data[0]['provider']['locations']
+        var specialty_primary = res.data[0]['provider']['specialty_primary']
+        var specialty = res.data[0]['provider']['specialty']
+        var board_certifications = res.data[0]['provider']['board_certifications']
+        var licenses = res.data[0]['provider']['licenses']
+        var education = res.data[0]['provider']['education']
+        var specialty_secondary = res.data[0]['provider']['specialty_secondary']
+        
+        resp.render('provider',{'fax':fax,'degree':degree,'gender':gender,'phone':phone,'birthDate':birthDate,'residencies':residencies,'licensures':licensures,'locations':locations,'specialty_primary':specialty_primary,'specialty':specialty,'board_certifications':board_certifications, 'licenses':licenses,'education':education,'specialty_secondary':specialty_secondary,'pfirstName':pfirstName, 'plastName':plastName})
+    });
+    
 });
 
 module.exports = router;

@@ -202,15 +202,6 @@ body {
 	vertical-align: top;
 }
 
-/*
-position: fixed;
-    top: 200px;
-    left: 50%;
-position: fixed;
-	top: 300px;
-	left: 30%;
-*/
-
 #service-pricing-canvas {
 	display: inline-block;
 	vertical-align: middle;
@@ -254,28 +245,36 @@ position: fixed;
     transition: -webkitfilter .3s linear;
 }
 
-.settings:hover{
-    -webkit-filter: brightness(120%);
-}
-
-#settings-button {
+/* Insurance Page */
+.insurance-icon {
     position: fixed;
-    width: 40px;
-    height: 40px;
-    top: 5px;
-    right: 150px;
-    background-color: transparent;
-    border: none;
+    top: 290px;
+    left: 50px;
+    width: 30px;
+    height: 35px;
     border-radius: 200px;
-    cursor: pointer;
-    overflow: hidden;
-    font-size: 130%;
-    text-align: middle;
-    color: white;
-    font-family: 'Monsterrat', sans-serif;
-    -webkit-filter: brightness(90%);
+    -webkit-filter: brightness(80%);
     transition: -webkitfilter .3s linear;
 }
 
+#insurance-button {
+    position: fixed;
+    top: 290px;
+    left: 55px;
+    width: 175px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    font-size: 150%;
+    text-align: middle;
+    color: white;
+    font-family: 'Monsterrat', sans-serif;
+    -webkit-filter: brightness(80%);
+    transition: -webkitfilter .3s linear;
+}
 
-
+.insurance:hover {
+    -webkit-filter: brightness(130%);
+}

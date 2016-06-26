@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
         
     "users":{
         "firstName": "Adithya",
@@ -19,3 +20,30 @@
 
 
 }
+=======
+  "users": {
+    "firstName": "Adithya",
+    "lastName": "Mohan",
+    "pfirstName": "Mohammad",
+    "plastName": "Ismail",
+    "drugs": [
+      {
+        "drug": {
+          "name": "simvastatin",
+          "reIn": "0.88",
+          "reOut": "2.00",
+          "maIn": "6.48",
+          "maOut": "0.00"
+        }
+      }
+    ],
+    "birthDate": "1998-10-14",
+    "zipCode": "95014",
+    "address": "21618 Rosario Ave",
+    "city": "Cupertino",
+    "state": "CA",
+    "gender": "Male",
+    "npi": "1730105784"
+  }
+}
+>>>>>>> 77b9d4a... Finish all unfinished pages and clean up ui
