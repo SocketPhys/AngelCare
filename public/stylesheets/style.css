@@ -160,6 +160,81 @@ body {
 	z-index: -1;
 }
 
+#master-graph-canvas {
+    position: fixed;
+    top: 200px;
+    right: 50px;  
+    left: 360px;
+}
+
+#master-graph-name {
+    position: fixed;
+    top: 140px;
+    left: 370px;
+	font-size: 200%;
+    font-family: 'Monsterrat', sans-serif;
+}
+
+#single-graph-name {
+    position: fixed;
+    top: 560px;
+    right: 140px;
+	font-size: 200%;
+    font-family: 'Monsterrat', sans-serif;
+}
+
+#single-graph-canvas {
+    position: fixed;
+    height: 350px;
+    width: 700px;
+    top: 620px;
+    right: 70px;
+    bottom: 50px;
+}
+
+#drug-1 {
+    position: fixed;
+    top: 700px;
+    left: 400px;
+    font-size: 18pt;
+	font-family: 'Montserrat', sans-serif;
+    display: none;
+}
+#drug-2 {
+    position: fixed;
+    top: 800px;
+    left: 400px;
+    font-size: 18pt;
+	font-family: 'Montserrat', sans-serif;
+    display: none;
+}
+#drug-3 {
+    position: fixed;
+    top: 900px;
+    left: 400px;
+    font-size: 18pt;
+	font-family: 'Montserrat', sans-serif;
+    display: none;
+}
+
+#drug-table {
+    position: fixed;
+    top: 700px;
+    left: 400px;
+}
+
+#drug-search {
+    position: fixed;
+    left: 400px;
+    top: 600px;
+    width: 500px;
+    height: 30px;
+    border-radius: 5px;
+	border-width: 1px;
+	font-size: 14pt;
+	font-family: 'Montserrat', sans-serif;
+}
+
 /* Health Service Pricing Page */
 .service-pricing:hover {
     -webkit-filter: brightness(130%);
@@ -199,7 +274,7 @@ body {
 	font-size: 300%;
     font-family: 'Montserrat', sans-serif;
 	display: inline-block;
-	vertical-align: top;
+	vertical-align: top;   
 }
 
 #service-pricing-canvas {
@@ -219,6 +294,7 @@ body {
 	font-size: 14pt;
 	font-family: 'Montserrat', sans-serif;
 }
+
 
 #service-pricing-graph {
 	position: relative;

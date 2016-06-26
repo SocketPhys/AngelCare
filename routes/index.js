@@ -324,7 +324,9 @@ router.post('/drug',function(req,res,next){
        qs: options
    }, function(err, res) {
       // print the activity name status and id
-          var activity = res['data'][0]
+          var activity = res['data'][0];
+         console.log(activity);
+          
           var reIn = activity['retail']['ins_pay_30_day']['amount']
           var reOut = activity['retail']['oop_30_day']['amount']
           var maIn = activity['mail']['ins_pay_90_day']['amount']

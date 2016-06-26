@@ -6,6 +6,7 @@
         <link rel='stylesheet' href='/stylesheets/style.css'/>
         <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Merienda+One' rel='stylesheet' type='text/css'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     </head>
     <body>
         
@@ -19,47 +20,57 @@
         <%# Sidebar Content %>
         <div id="left-rectangle"></div>
         <div id="vertical-line"></div>
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+        <img src="/images/dashboard_icon.png" alt="Dashboard" class="dashboard-icon">
+        <form action="/cpt" method="POST">
+            <input type="submit" value="Dashboard" id="dashboard-button">
+        </form>
+        
+        
+    
+>>>>>>> e7a1968... Fix bar graphs and add drug list
         <script type="text/javascript">
             var drugs = <%-JSON.stringify(drugs)%>;
             var dict={};
             var retail = {};
-            var master = {};
             var mail = {};
+            var retail2D = {};
+            var mail2D = {};
+             //$('#drug-table').append('<tr><td>'+drugs[drugs.length-1]+'</td></tr>');
+            var master_retail = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            var master_mail = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             for(var i = 0; i < drugs.length; i++) {
                 var name = drugs[i]['drug']['name'];
-                
                 var reOut = drugs[i]['drug']['reOut'];
                 
                 var a = parseInt(reOut);
-                // console.log("a" + a);
-                for(var k =0; k < 12; k++){
-                   retail[k] = (a - 2) + (Math.random() * (a + 3));
-              //     console.log("Example" + retail[k]);
+                for(var k =0; k < 12; k++) {
+                    retail[k] = (a - 2) + (Math.random() * (a + 3));
                 }
-                
-                
                 var maOut = drugs[i]['drug']['maOut'];
-                
                 var b = parseInt(maOut);
-            //    console.log("b" + b);
                 for(var k = 0; k < 12; k++){
                    var ex = (b - 2) + (Math.random() * (b + 3));
-                 //  console.log("examples" + ex);
                     if(ex < 0){
                         ex = 0;
                     }
                    mail[k] = ex;
-                 //  console.log("Example" + mail[k]);
                 }
                 
-                for(var k = 0; k < 12; k++){
-                    master[k] = retail[k] + mail[k];
-                    console.log("Master values" + master[k]);
+                for(var k = 0; k < 12; k++) {
+                    master_retail[k] = master_retail[k] + retail[k];
+                    master_mail[k] = master_mail[k] + mail[k];
                 }
+                
+                retail2D[i] = retail[i];
+                mail2D[i] = mail[i];
                 
                 console.log(name)
                 var stringer = name;
+<<<<<<< HEAD
                 console.log(stringer);
                 
                 var r= $('<input type="button" onclick="click(this)" value=' + stringer + '/>');
@@ -70,6 +81,11 @@
                 dict[name] = {'reOut': reOut,'maOut':maOut};
                 //$('#main-rectangle').append('</br>');
                 
+=======
+                console.log(stringer)
+                //var r= $('<input type="button" onclick="click(this)" value=' + stringer + '/>')
+                dict[name] = {'reOut': reOut,'maOut':maOut};
+>>>>>>> e7a1968... Fix bar graphs and add drug list
                 
             }
             function click(elem){
@@ -77,8 +93,151 @@
                 var reOut =  dict[elem.value['reOut']]
                 var maOut = dict[elem.value['maOut']]
             }
+<<<<<<< HEAD
         </script>
-       
+=======
+            
+            /*
+            for (var i = 0; i < 12; i++) {
+                console.log(master_retail[i]);
+                console.log(master_mail[i]);
+            }
+            */
+        </script> 
+
+        <div id="master-graph-name">Total Monthly Copayment Prices from Drugs (USD)</div>
+        
+        <canvas id="master-graph-canvas" width="1510" height="320"></canvas>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+        <script>
+        var barData = {
+            labels : ["Jan","Feb","Mar","Apr","May","Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets : [{
+                label: "Monthly Copayment Prices from Mail",
+                lineTension: 0,
+                fillColor: "rgba(255, 176, 83, 0.2)",
+                strokeColor: "rgba(255, 176, 83, 1)",
+                pointColor: "rgba(255, 176, 83, 1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data : [master_mail[0],
+                        master_mail[1], 
+                        master_mail[2], 
+                        master_mail[3], 
+                        master_mail[4], 
+                        master_mail[5], 
+                        master_mail[6], 
+                        master_mail[7], 
+                        master_mail[8], 
+                        master_mail[9], 
+                        master_mail[10], 
+                        master_mail[11]]
+            }, {
+                label: "Monthly Copayment Prices from Retail",
+                lineTension: 0,
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data : [retail[0],
+                        retail[1], 
+                        retail[2], 
+                        retail[3], 
+                        retail[4], 
+                        retail[5], 
+                        retail[6], 
+                        retail[7], 
+                        retail[8], 
+                        retail[9], 
+                        retail[10], 
+                        retail[11]]
+            }]
+        }
+        var ctx = document.getElementById("master-graph-canvas").getContext("2d");
+        var myChart = new Chart(ctx).Line(barData);
+        </script>
+        
+        
+        <div id="single-graph-name">Monthly Copayment Prices from Single Drug (USD)</div>
+        
+        <canvas id="single-graph-canvas" width="1510" height="320"></canvas>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+        <script>
+        var barData = {
+            labels : ["Jan","Feb","Mar","Apr","May","Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets : [{
+                label: "Monthly Copayment Prices from Mail",
+                lineTension: 0,
+                fillColor: "rgba(255, 176, 83, 0.2)",
+                strokeColor: "rgba(255, 176, 83, 1)",
+                pointColor: "rgba(255, 176, 83, 1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data : [mail[0],
+                        mail[1], 
+                        mail[2], 
+                        mail[3], 
+                        mail[4], 
+                        mail[5], 
+                        mail[6], 
+                        mail[7], 
+                        mail[8], 
+                        mail[9], 
+                        mail[10], 
+                        mail[11]]
+            }, {
+                label: "Monthly Copayment Prices from Retail",
+                lineTension: 0,
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data : [retail[0],
+                        retail[1], 
+                        retail[2], 
+                        retail[3], 
+                        retail[4], 
+                        retail[5], 
+                        retail[6], 
+                        retail[7], 
+                        retail[8], 
+                        retail[9], 
+                        retail[10], 
+                        retail[11]]
+            }]
+        }
+
+        var ctx = document.getElementById("single-graph-canvas").getContext("2d");
+        var myChart = new Chart(ctx).Line(barData);
+        </script>
+        
+        
+        
+        <script>
+        var c = 1;
+        function blurFunction() {
+            document.getElementById("drug-" + c).style.display = "initial";
+            c = c+1;
+        }
+        </script>
+        
+        
+        <table id="drug-table"></table>
+        
+        <form action='/drug' method = 'POST'>
+            <input type = "text" name = "drug" placeholder= "Drug Name" id="drug-search" onfocusout="blurFunction()">
+        </form>
+        
+        <div id="drug-1">Simvastatin 40 MG</div>
+        <div id="drug-2">Lyrica 20 MG</div>
+        <div id="drug-3">Vimpat 80 MG</div>
+        
         <div class="dashboard">
             <img src="/images/dashboard_icon.png" alt="Dashboard" class="dashboard-icon">
             <form action="/" method="GET">
