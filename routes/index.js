@@ -9,7 +9,7 @@ var pokitdok = new PokitDok(POKITDOK_CLIENT_ID, POKITDOK_CLIENT_SECRET);
 var request = require('request');
 /* GET home page. */
 
-router.get('/', function(req, res, next) {
+router.get('/', function(req, resp, next) {
   var firstName =  db.get('users')
   .get('firstName')
   .value();
@@ -49,6 +49,14 @@ router.get('/', function(req, res, next) {
   var zipcode = db.get('users')
   .get('zipCode')
   .value();
+    
+   var birthdate = db.get('users')
+  .get('birthDate')
+  .value()
+   
+   var npi = db.get('users')
+  .get('npi')
+  .value()
 
 
   /*pokitdok.apiRequest({
@@ -63,7 +71,7 @@ router.get('/', function(req, res, next) {
   
   });*/
 
-    /*pokitdok.providers({
+   /* pokitdok.providers({
        first_name: pfirstName,
        last_name:  plastName,
        state: state,
@@ -85,6 +93,7 @@ router.get('/', function(req, res, next) {
         var licenses = res.data[0]['provider']['licenses']
         var education = res.data[0]['provider']['education']
         var specialty_secondary = res.data[0]['provider']['specialty_secondary']
+        
         console.log(fax  + " " + phone +" " + gender + " " + degree + " " + birthDate + " " + JSON.stringify(residencies) + " " + JSON.stringify(licensures) +" " + JSON.stringify(locations) + " " + JSON.stringify(specialty_primary) + " " + specialty + " " + board_certifications + " " + JSON.stringify(licenses) + " " + JSON.stringify(education) + " " + specialty_secondary);
     });*/
     
@@ -327,9 +336,7 @@ router.post('/drug',function(req,res,next){
        qs: options
    }, function(err, res) {
       // print the activity name status and id
-          var activity = res['data'][0];
-         console.log(activity);
-          
+          var activity = res['data'][0]
           var reIn = activity['retail']['ins_pay_30_day']['amount']
           var reOut = activity['retail']['oop_30_day']['amount']
           var maIn = activity['mail']['ins_pay_90_day']['amount']
@@ -403,7 +410,7 @@ router.get('/provider',function(req,resp,next){
    var npi = db.get('users')
   .get('npi')
   .value()
-    
+
   /*pokitdok.apiRequest({
     path: '/providers/',
     method: 'GET',

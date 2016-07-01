@@ -115,15 +115,8 @@ body {
     width: 30px;
     height: 30px;
     border-radius: 200px;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> e2ca331... Finish cpt page and finish the skeleton for the dashboard
     -webkit-filter: brightness(75%);
-=======
     -webkit-filter: brightness(80%);
->>>>>>> 93b3cc8... Finish cpt page and finish the skeleton for the dashboard
     transition: -webkitfilter .3s linear;
 }
 
